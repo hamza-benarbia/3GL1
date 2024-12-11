@@ -1,0 +1,23 @@
+eurika:
+    client: 
+         serviceURl:
+                 defaultZone:http://localhost:9993/eurika
+
+spring:
+    cloud:
+       gateway:
+           routes: 
+               id:microservice-user 
+               uri: lb://microservice-user
+               predicates:
+                    Path=/utilisateur/**
+               filters:
+                   RewritePath/utilisateur/(?<path>,*) , /$\{path}
+
+
+        id: microservice_projet
+        uri:lb://microservice_projet
+        predicates
+              Path=/projet/**
+        filtres:
+            RewaritePath=/projet/(?<path>,*) , /$\{path}
